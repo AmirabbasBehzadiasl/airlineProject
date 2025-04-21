@@ -1,0 +1,10 @@
+@NotNull
+@NotBlank
+@Size
+@Min
+@Max
+@Column
+@Pattern
+@Email
+@Past//@Future/...
+@Enumerated
