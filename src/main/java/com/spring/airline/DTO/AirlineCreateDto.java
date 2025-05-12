@@ -7,8 +7,7 @@ import java.util.List;
 
 public class AirlineCreateDto {
 
-    @NotNull(message = "Name is required")
-    @NotBlank(message = "Name can't be empty")
+    @NotBlank(message = "Name is required")
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Name must only contain letters and spaces")
     private String name;
@@ -16,19 +15,17 @@ public class AirlineCreateDto {
     @NotNull(message = "Country is required")
     private Country country;
 
-    @NotNull(message = "Email is required")
-    @NotBlank(message = "Email can't be blank")
+    @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
     @Size(min = 12 , max = 40 , message = "email should be between 5 and 40 character")
     private String email;
 
-    @NotNull(message = "Phone number is required")
-    @NotBlank(message = "Phone number can't be empty")
+    @NotBlank(message = "Phone number is required")
     private String phoneNumber;
 
-    private List<Integer> aircraftId;
+    private List<String> aircraftName;
 
-    private List<Integer> employeeId;
+    private List<String> employeeNationalCode;
 
     public String getName() {
         return name;
@@ -62,19 +59,19 @@ public class AirlineCreateDto {
         this.country = country;
     }
 
-    public List<Integer> getAircraftId() {
-        return aircraftId;
+    public List<String> getAircraftName() {
+        return aircraftName;
     }
 
-    public void setAircraftId(List<Integer> aircraftId) {
-        this.aircraftId = aircraftId;
+    public void setAircraftName(List<String> aircraftName) {
+        this.aircraftName = aircraftName;
     }
 
-    public List<Integer> getEmployeeId() {
-        return employeeId;
+    public List<String> getEmployeeNationalCode() {
+        return employeeNationalCode;
     }
 
-    public void setEmployeeId(List<Integer> employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeNationalCode(List<String> employeeNationalCode) {
+        this.employeeNationalCode = employeeNationalCode;
     }
 }

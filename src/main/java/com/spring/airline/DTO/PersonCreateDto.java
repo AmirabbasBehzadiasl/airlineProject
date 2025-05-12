@@ -9,24 +9,21 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 public class PersonCreateDto {
-    @NotNull(message = "you should enter nationalCode")
-    @NotBlank(message = "NationalCode can't be empty")
+
+    @NotBlank(message = "you should enter nationalCode")
     private String nationalCode;
 
-    @NotNull(message = "you should enter firstName")
-    @NotBlank(message = "firstName can't be empty")
-    @Size(min = 2, max = 20, message = "firstName must be between 2 and 20 characters")
+    @NotBlank(message = "you should enter firstName")
+    @Size(min = 3, max = 20, message = "firstName must be between 3 and 20 characters")
     @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "firstName must only contain letters and spaces")
     private String firstName;
 
-    @NotNull(message = "you should enter lastName")
-    @NotBlank(message = "lastName can't be empty")
-    @Size(min = 2, max = 50, message = "lastName must be between 2 and 50 characters")
+    @NotBlank(message = "you should enter lastName")
+    @Size(min = 3, max = 50, message = "lastName must be between 3 and 50 characters")
     @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "lastName must only contain letters and spaces")
     private String lastName;
 
-    @NotNull(message = "you should enter phoneNumber")
-    @NotBlank(message = "phoneNumber can't be empty")
+    @NotBlank(message = "you should enter phoneNumber")
     private String phoneNumber;
 
     @NotNull(message = "you should enter birthDate")
@@ -34,18 +31,15 @@ public class PersonCreateDto {
     private LocalDate birthDate;
 
     @NotNull(message = "you should enter gender")
-    @NotBlank(message = "gender can't be empty")
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Email
-    @NotNull(message = "you should enter email")
-    @NotBlank(message = "email can't be empty")
+    @NotBlank(message = "you should enter email")
     @Size(min = 15 , max = 40 , message = "email must be between 15 and 40 alphanumeric characters")
     private String email;
 
     @NotNull(message = "you should enter Nationality")
-    @NotBlank(message = "Nationality can't be empty")
     @Enumerated(EnumType.STRING)
     private Country Nationality;
 

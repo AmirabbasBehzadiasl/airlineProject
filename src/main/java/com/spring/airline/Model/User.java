@@ -13,7 +13,6 @@
         @Column(nullable = false , unique=true , length = 50)
         private String password;
 
-        // it's optional (don't add any field to table)
         @OneToMany(mappedBy = "user")
         private List<Ticket> tickets;
 

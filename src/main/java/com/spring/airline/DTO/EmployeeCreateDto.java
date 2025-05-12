@@ -13,22 +13,18 @@ public class EmployeeCreateDto {
 
     private PersonCreateDto person;
 
-    @NotNull(message = "jobPosition is required")
-    @NotBlank(message = "jobPosition can't be empty")
+    @NotBlank(message = "you should enter jobPosition")
     private String jobPosition;
 
-    @NotNull(message = "workShift is required")
-    @NotBlank(message = "workShift can't be empty")
+    @NotNull(message = "you should enter workShift")
     private WorkShiftTime workShift;
 
-    @PastOrPresent(message = "hireDate can't be in the future")
+    @PastOrPresent(message = "you should enter hireDate")
     @NotNull(message = "hireDate is required")
-    @NotBlank(message = "hireDate can't be empty")
     private LocalDate hireDate;
 
-    @NotNull
-    @Min(value = 1,message = "airline must be more than one")
-    private Integer airlineId;
+    @NotBlank(message = "you should enter ")
+    private String airlineName;
 
     public PersonCreateDto getPerson() {
         return person;
@@ -62,11 +58,11 @@ public class EmployeeCreateDto {
         this.hireDate = hireDate;
     }
 
-    public Integer getAirlineId() {
-        return airlineId;
+    public String getAirlineName() {
+        return airlineName;
     }
 
-    public void setAirlineId(Integer airlineId) {
-        this.airlineId = airlineId;
+    public void setAirlineName(String airlineName) {
+        this.airlineName = airlineName;
     }
 }

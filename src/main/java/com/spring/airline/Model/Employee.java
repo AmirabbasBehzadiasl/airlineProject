@@ -13,9 +13,7 @@ public class Employee extends Person {
     @Column(nullable = false, length = 32)
     private String jobPosition;
 
-
     @Column(nullable = false, length = 20)
-    @NotNull(message = "workShift is required")
     @Embedded
     private WorkShiftTime workShift;
 

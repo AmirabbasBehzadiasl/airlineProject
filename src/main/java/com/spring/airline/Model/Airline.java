@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @ValidPhoneNumber
+@Table(name = "airline", indexes = {@Index(name = "idx_airline_name", columnList = "name")})
 public class Airline {
 
     @Id

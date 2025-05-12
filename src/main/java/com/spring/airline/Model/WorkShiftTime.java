@@ -2,10 +2,11 @@ package com.spring.airline.Model;
 
 import jakarta.persistence.Embeddable;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+
 
 @Embeddable
 public class WorkShiftTime {
-    private LocalTime startWorkShiftTime;
-    private LocalTime endWorkShiftTime;
+    private LocalDateTime startWorkShiftTime;
+    private LocalDateTime endWorkShiftTime;
 }
