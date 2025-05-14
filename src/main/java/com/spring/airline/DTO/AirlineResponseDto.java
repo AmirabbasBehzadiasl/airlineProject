@@ -16,7 +16,7 @@ public class AirlineResponseDto {
 
     private List<String> aircraftName;
 
-    private List<String> employeeName;
+    private List<String> employeesNationalCode;
 
     public String getName() {
         return name;
@@ -50,12 +50,12 @@ public class AirlineResponseDto {
         this.country = country;
     }
 
-    public List<String> getEmployeeName() {
-        return employeeName;
+    public List<String> getEmployeesNationalCode() {
+        return employeesNationalCode;
     }
 
-    public void setEmployeeName(List<String> employeeName) {
-        this.employeeName = employeeName;
+    public void setEmployeesNationalCode(List<String> employeesNationalCode) {
+        this.employeesNationalCode = employeesNationalCode;
     }
 
     public List<String> getAircraftName() {

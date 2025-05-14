@@ -30,7 +30,7 @@ public class EmployeeService {
     public List<EmployeeResponseDto> getAllPersons() {
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream()
-                .map(person -> employeeMapper.toDto(person))
+                .map(employee -> employeeMapper.toDto(employee))
                 .toList();
     }
 
@@ -49,7 +49,7 @@ public class EmployeeService {
         Airline airline = airlineRepository.findAirlineByName(employee.getAirlineName())
                 .orElseThrow(() -> new NotFoundException("airline with name : " + employee.getAirlineName() + " not found"));
         employeeModel.setAirline(airline);
-        employeeRepository.save(employeeMapper.toModel(employee));
+        employeeRepository.save(employeeModel);
     }
 
     public void updateEmployeeByNationalCode(String nationalCode, @Valid EmployeeCreateDto employee) {

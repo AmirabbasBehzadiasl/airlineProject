@@ -23,9 +23,9 @@ public class AirlineCreateDto {
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
 
-    private List<String> aircraftName;
+    private List<String> aircraftRegistrationNumber;
 
-    private List<String> employeeNationalCode;
+    private List<String> employeesNationalCode;
 
     public String getName() {
         return name;
@@ -59,19 +59,19 @@ public class AirlineCreateDto {
         this.country = country;
     }
 
-    public List<String> getAircraftName() {
-        return aircraftName;
+    public List<String> getAircraftRegistrationNumber() {
+        return aircraftRegistrationNumber;
     }
 
-    public void setAircraftName(List<String> aircraftName) {
-        this.aircraftName = aircraftName;
+    public void setAircraftRegistrationNumber(List<String> aircraftRegistrationNumber) {
+        this.aircraftRegistrationNumber = aircraftRegistrationNumber;
     }
 
-    public List<String> getEmployeeNationalCode() {
-        return employeeNationalCode;
+    public List<String> getEmployeesNationalCode() {
+        return employeesNationalCode;
     }
 
-    public void setEmployeeNationalCode(List<String> employeeNationalCode) {
-        this.employeeNationalCode = employeeNationalCode;
+    public void setEmployeesNationalCode(List<String> employeesNationalCode) {
+        this.employeesNationalCode = employeesNationalCode;
     }
 }
