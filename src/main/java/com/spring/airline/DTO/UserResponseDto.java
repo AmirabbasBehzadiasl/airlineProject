@@ -10,7 +10,7 @@ public class UserResponseDto {
 
     private PersonResponseDto person;
 
-    private List<Ticket> purchasedTickets;
+    private List<TicketResponseDto> purchasedTickets;
 
     public String getUsername() {
         return username;
@@ -28,11 +28,11 @@ public class UserResponseDto {
         this.person = person;
     }
 
-    public List<Ticket> getPurchasedTickets() {
+    public List<TicketResponseDto> getPurchasedTickets() {
         return purchasedTickets;
     }
 
-    public void setPurchasedTickets(List<Ticket> purchasedTickets) {
+    public void setPurchasedTickets(List<TicketResponseDto> purchasedTickets) {
         this.purchasedTickets = purchasedTickets;
     }
 

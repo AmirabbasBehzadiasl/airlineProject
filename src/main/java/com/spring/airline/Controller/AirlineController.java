@@ -31,8 +31,7 @@ public class AirlineController {
 
     @GetMapping("/getAirlineByName")
     public ResponseEntity<?> getEmployeeByNationalCode(@RequestParam String name) {
-        AirlineResponseDto response = airlineService.getEmployeeByNationalCode(name);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(airlineService.getEmployeeByNationalCode(name));
     }
 
     @PostMapping("/addAirline")

@@ -15,10 +15,12 @@ import java.util.List;
 
 @Service
 public class AirlineService {
+
     AirlineRepository airlineRepository;
     EmployeeRepository employeeRepository;
     AirlineMapper airlineMapper;
     AircraftRepository aircraftRepository;
+
     public AirlineService(AirlineRepository airlineRepository, AirlineMapper airlineMapper
     , EmployeeRepository employeeRepository , AircraftRepository aircraftRepository) {
         this.airlineRepository = airlineRepository;
@@ -28,8 +30,7 @@ public class AirlineService {
     }
 
     public List<AirlineResponseDto> getAllAirlines() {
-        List<Airline> airlines = airlineRepository.findAll();
-     return airlines.stream()
+        return airlineRepository.findAll().stream()
                 .map(airline -> airlineMapper.toDto(airline))
                 .toList();
     }

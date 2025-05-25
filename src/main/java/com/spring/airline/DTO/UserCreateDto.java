@@ -9,18 +9,15 @@ import validation.ValidPhoneNumber;
 @ValidPhoneNumber
 public class UserCreateDto {
 
-    @NotNull(message = "you should enter username")
-    @NotBlank(message = "password can't be username")
+    @NotBlank(message = "you should enter username")
     @Size(min = 8, max = 50, message = "username must be between 8 and 50 characters")
     private String username;
 
-    @NotNull(message = "you should enter password")
-    @NotBlank(message = "password can't be empty")
+    @NotBlank(message = "you should enter password")
     @Size(min = 8, max = 50, message = "password must be between 8 and 50 characters")
     private String password;
 
-    @NotNull(message = "you should send person fields")
-    @NotBlank(message = "person fields can't be empty")
+    @NotBlank(message = "you should send person fields")
     private PersonCreateDto person;
 
     public String getUsername() {

@@ -4,15 +4,16 @@ import com.spring.airline.Enums.TicketClass;
 import com.spring.airline.Enums.TicketStatus;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class TicketResponseDto {
 
     private BigInteger ticketPrice;
     private Integer seatNumber;
+    private TicketClass ticketClass;
     private TicketStatus ticketStatus;
     private String flightNumber;
-    private TicketClass ticketClass;
-    private PassengerResponseDto passenger;
+    private String passenger;
 
     public BigInteger getTicketPrice() {
         return ticketPrice;
@@ -54,11 +55,11 @@ public class TicketResponseDto {
         this.ticketClass = ticketClass;
     }
 
-    public PassengerResponseDto getPassenger() {
+    public String getPassenger() {
         return passenger;
     }
 
-    public void setPassenger(PassengerResponseDto passenger) {
+    public void setPassenger(String passenger) {
         this.passenger = passenger;
     }
 }
