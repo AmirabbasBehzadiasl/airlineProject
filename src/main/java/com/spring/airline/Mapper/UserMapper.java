@@ -9,10 +9,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring" ,  uses = {TicketMapper.class , PersonMapper.class})
 public interface UserMapper {
 
-    @Mapping(source = "person", target = "person", qualifiedByName = "toPerson")
     User toModel(UserCreateDto dto);
 
-    @Mapping(source = "tickets" , target = "purchasedTickets" , qualifiedByName = "toPurchasedTickets")
     UserResponseDto toDto(User user);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

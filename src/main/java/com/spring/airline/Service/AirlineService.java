@@ -55,6 +55,7 @@ public class AirlineService {
                 .ifPresentOrElse(
                         existingAirline -> {
                             airlineMapper.updateAirlineFromDto(airline, existingAirline);
+                            airlineRepository.save(existingAirline);
                         },
                         () -> { throw new NotFoundException("airline with name : " + name + " not found");});
     }

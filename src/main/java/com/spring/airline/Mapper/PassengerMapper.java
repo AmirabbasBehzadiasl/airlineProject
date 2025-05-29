@@ -9,7 +9,6 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring" , uses = {PersonMapper.class})
 public interface PassengerMapper {
 
-    @Mapping(source = "person", target = "person", qualifiedByName = "toPerson")
     Passenger toModel(PassengerCreateDto dto);
 
     PassengerResponseDto toDto(Passenger passenger);

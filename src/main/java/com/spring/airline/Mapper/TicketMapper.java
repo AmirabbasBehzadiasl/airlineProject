@@ -14,8 +14,8 @@ public interface TicketMapper {
     @Mapping(source =  "passenger", target = "passenger" , qualifiedByName = "toPassenger")
     TicketResponseDto toDto(Ticket ticket);
 
-    @Named("toPerson")
-    default String toPerson(Passenger passenger) {
+    @Named("toPassenger")
+    default String toPassenger(Passenger passenger) {
         if (passenger != null)
           return passenger.getFirstName() + passenger.getLastName();
         return null;

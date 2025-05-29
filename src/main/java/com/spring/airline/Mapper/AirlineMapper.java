@@ -2,6 +2,7 @@ package com.spring.airline.Mapper;
 
 import com.spring.airline.DTO.AirlineCreateDto;
 import com.spring.airline.DTO.AirlineResponseDto;
+import com.spring.airline.Model.Aircraft;
 import com.spring.airline.Model.Airline;
 import com.spring.airline.Model.Employee;
 import org.mapstruct.*;
@@ -16,11 +17,11 @@ public interface AirlineMapper {
     @Mapping(target = "employees", ignore = true)
     Airline toModel(AirlineCreateDto airlineCreateDto);
 
-    @Mapping(source = "aircraft.name" , target = "aircraftName")
+    @Mapping(source = "aircraft" , target = "aircraftName" , qualifiedByName = "aircraftMap")
     @Mapping(source = "employees" , target = "employeesNationalCode" , qualifiedByName = "employeeMap")
     AirlineResponseDto toDto(Airline airline);
 
-    @Mapping(target = "aircraft", source = "aircraftName" , ignore = true)
+    @Mapping(target = "aircraft", ignore = true)
     @Mapping(target = "employees", source = "employeesNationalCode" , ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateAirlineFromDto(AirlineCreateDto airlineCreateDto,@MappingTarget Airline airline);
@@ -34,5 +35,13 @@ public interface AirlineMapper {
             }
         }
         return employeesNationalCode;
+    }
+    @Named("aircraftMap")
+    default List<String> aircraftMap(List<Aircraft> aircrafts) {
+        List<String> aircraftModels = new ArrayList<>();
+        for (Aircraft aircraft : aircrafts){
+            aircraftModels.add(aircraft.getModel());
+        }
+        return aircraftModels;
     }
 }
