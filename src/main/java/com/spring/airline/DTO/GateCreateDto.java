@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class GateCreateDto {
 
-    @NotNull(message = "status is required")
+    @NotNull(message = "gate status is required")
     private GateStatus status;
 
     public  GateStatus getStatus() {
