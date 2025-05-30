@@ -8,10 +8,12 @@ import com.spring.airline.Mapper.PassengerMapper;
 import com.spring.airline.Model.Passenger;
 import com.spring.airline.Repository.PassengerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class PassengerService {
 
     private final PassengerRepository passengerRepository;

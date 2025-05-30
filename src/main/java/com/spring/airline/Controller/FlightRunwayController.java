@@ -2,6 +2,8 @@ package com.spring.airline.Controller;
 
 import com.spring.airline.DTO.FlightRunwayCreateDto;
 import com.spring.airline.DTO.FlightRunwayResponseDto;
+import com.spring.airline.Enums.FlightStatus;
+import com.spring.airline.Enums.RunwayStatus;
 import com.spring.airline.Service.FlightRunwayService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/flight-runway")
+@RequestMapping("/api/flightRunway")
 public class FlightRunwayController {
 
     private final FlightRunwayService runwayService;
@@ -20,34 +22,37 @@ public class FlightRunwayController {
         this.runwayService = runwayService;
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<?> getAllRunways() {
+    @GetMapping("/getAllFlightRunways")
+    public ResponseEntity<?> getAllFlightRunways() {
         List<FlightRunwayResponseDto> runways = runwayService.getAllRunways();
         if (runways.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No runways found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("there are no runways");
         }
         return ResponseEntity.ok(runways);
     }
 
-    @GetMapping("/getById")
+    @GetMapping("/getFlightRunwayById")
     public ResponseEntity<?> getRunwayById(@RequestParam Integer id) {
         return ResponseEntity.ok(runwayService.getRunwayById(id));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addRunway(@Valid @RequestBody FlightRunwayCreateDto dto) {
-        runwayService.addRunway(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    @GetMapping("/getFlightRunwayByStatus")
+    public ResponseEntity<?> getFlightRunwayByStatus(@RequestParam RunwayStatus status) {
+        return ResponseEntity.ok(runwayService.getFlightRunwayByStatus(status));
     }
 
-    @PutMapping("/updateById")
-    public ResponseEntity<?> updateRunway(@RequestParam Integer id, @Valid @RequestBody FlightRunwayCreateDto dto) {
-        runwayService.updateRunwayById(id, dto);
-        return ResponseEntity.ok(dto);
+    @PostMapping("/addFlightRunway")
+    public ResponseEntity<?> addFlightRunway(@Valid @RequestBody FlightRunwayCreateDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(runwayService.addRunway(dto));
     }
 
-    @DeleteMapping("/deleteById")
-    public ResponseEntity<?> deleteRunway(@RequestParam Integer id) {
+    @PutMapping("/updateFlightRunwayById")
+    public ResponseEntity<?> updateFlightRunway(@RequestParam Integer id, @Valid @RequestBody FlightRunwayCreateDto dto) {
+        return ResponseEntity.ok(runwayService.updateRunwayById(id, dto));
+    }
+
+    @DeleteMapping("/deleteFlightRunwaysById")
+    public ResponseEntity<?> deleteFlightRunway(@RequestParam Integer id) {
         runwayService.deleteRunwayById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

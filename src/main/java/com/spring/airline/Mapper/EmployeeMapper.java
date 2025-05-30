@@ -7,27 +7,19 @@ import com.spring.airline.Model.Employee;
 import com.spring.airline.Repository.AirlineRepository;
 import org.mapstruct.*;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring" , uses = {PersonMapper.class})
 public interface EmployeeMapper {
-    AirlineRepository airlineRepository = null;
-    
 
     @Mapping(source = "airlineName" , target = " airline" , ignore = true)
+    @Mapping(source = "person", target = ".", qualifiedByName = "toPerson")
     Employee toModel(EmployeeCreateDto employee);
 
     @Mapping( source = "airline.name ", target = "airlineName")
+    @Mapping(source=".", target="person", qualifiedByName="toDto")
     EmployeeResponseDto toDto(Employee employee);
 
-    @Mapping(source = "airlineName", target = "airline" , ignore = true)
-    @Mapping(source = "person.firstName", target = "firstName")
-    @Mapping(source = "person.lastName", target = "lastName")
-    @Mapping(source = "person.birthDate", target = "birthDate")
-    @Mapping(source = "person.email", target = "email")
-    @Mapping(source = "person.nationalCode", target = "nationalCode")
-    @Mapping(source = "person.gender", target = "gender")
-    @Mapping(source = "person.phoneNumber", target = "phoneNumber")
-    @Mapping(source = "person.nationality", target = "nationality")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = "person", target = ".", qualifiedByName = "toPerson")
     void updateEmployeeFromDto(EmployeeCreateDto dto, @MappingTarget Employee employee);
 
 }

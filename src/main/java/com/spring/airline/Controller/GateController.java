@@ -2,6 +2,7 @@ package com.spring.airline.Controller;
 
 import com.spring.airline.DTO.GateCreateDto;
 import com.spring.airline.DTO.GateResponseDto;
+import com.spring.airline.Enums.GateStatus;
 import com.spring.airline.Service.GateService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class GateController {
     public ResponseEntity<?> getAllGates() {
         List<GateResponseDto> gates = gateService.getAllGates();
         if (gates.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No gates available");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("there are no gates");
         }
         return ResponseEntity.ok(gates);
     }
@@ -34,16 +35,17 @@ public class GateController {
         return ResponseEntity.ok(gateService.getGateById(id));
     }
 
+    @GetMapping("/getGateByStatus")
+    public ResponseEntity<?> getGateByStatus(@RequestParam GateStatus status) {
+        return ResponseEntity.ok(gateService.getGateByStatus(status));
+    }
     @PostMapping("/addGate")
     public ResponseEntity<?> addGate(@Valid @RequestBody GateCreateDto dto) {
-        gateService.addGate(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(gateService.addGate(dto));
     }
-
     @PutMapping("/updateGateById")
     public ResponseEntity<?> updateGateById(@RequestParam Integer id, @Valid @RequestBody GateCreateDto dto) {
-        gateService.updateGate(id, dto);
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(gateService.updateGate(id, dto));
     }
 
     @DeleteMapping("/deleteGateById")

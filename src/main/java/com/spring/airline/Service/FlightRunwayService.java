@@ -2,6 +2,8 @@ package com.spring.airline.Service;
 
 import com.spring.airline.DTO.FlightRunwayCreateDto;
 import com.spring.airline.DTO.FlightRunwayResponseDto;
+import com.spring.airline.Enums.FlightStatus;
+import com.spring.airline.Enums.RunwayStatus;
 import com.spring.airline.Exceptions.NotFoundException;
 import com.spring.airline.Mapper.FlightRunwayMapper;
 import com.spring.airline.Model.FlightRunway;
@@ -35,21 +37,30 @@ public class FlightRunwayService {
         return runwayMapper.toDto(runway);
     }
 
-    public void addRunway(@Valid FlightRunwayCreateDto dto) {
-        FlightRunway runway = runwayMapper.toModel(dto);
-        runwayRepository.save(runway);
+    public FlightRunwayResponseDto addRunway(FlightRunwayCreateDto dto) {
+        FlightRunway flightRunway = runwayRepository.save(runwayMapper.toModel(dto));
+        return runwayMapper.toDto(flightRunway);
     }
 
-    public void updateRunwayById(Integer id, @Valid FlightRunwayCreateDto dto) {
+    public FlightRunwayResponseDto updateRunwayById(Integer id, FlightRunwayCreateDto dto) {
         FlightRunway runway = runwayRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Runway with ID " + id + " not found"));
         runwayMapper.updateRunwayFromDto(dto, runway);
         runwayRepository.save(runway);
+        return runwayMapper.toDto(runway);
     }
 
     public void deleteRunwayById(Integer id) {
         FlightRunway runway = runwayRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Runway with ID " + id + " not found"));
         runwayRepository.delete(runway);
+    }
+
+    public List<FlightRunwayResponseDto> getFlightRunwayByStatus(RunwayStatus status) {
+        return runwayRepository.findFlightRunwaysByStatus(status)
+                .stream()
+                .map(runwayMapper::toDto)
+                .toList();
+
     }
 }

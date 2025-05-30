@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/passenger")
+    @RequestMapping("/api/passenger")
 public class PassengerController {
 
     private final PassengerService passengerService;
@@ -20,7 +20,7 @@ public class PassengerController {
         this.passengerService = passengerService;
     }
 
-    @GetMapping("/getAllPassenger")
+    @GetMapping("/getAllPassengers")
     public ResponseEntity<?> getAllPassenger() {
         List<PassengerResponseDto> passengers = passengerService.getAllPassengers();
         if (passengers.isEmpty()) {
@@ -40,7 +40,7 @@ public class PassengerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @PutMapping("/updatePassengerBYPassportNumber")
+    @PutMapping("/updatePassengerByPassportNumber")
     public ResponseEntity<?> updatePassengerBYPassportNumber(@RequestParam String passportNumber, @Valid @RequestBody PassengerCreateDto dto) {
         PassengerResponseDto updated = passengerService.updatePassenger(passportNumber, dto);
         return ResponseEntity.ok(updated);

@@ -22,7 +22,7 @@ public interface AirlineMapper {
     AirlineResponseDto toDto(Airline airline);
 
     @Mapping(target = "aircraft", ignore = true)
-    @Mapping(target = "employees", source = "employeesNationalCode" , ignore = true)
+    @Mapping(target = "employees",  ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateAirlineFromDto(AirlineCreateDto airlineCreateDto,@MappingTarget Airline airline);
 

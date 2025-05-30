@@ -11,3 +11,15 @@
 
 /// changes
 add employee code and use it rather nationalCode
+
+//
+    public FlightRunwayResponseDto updateRunwayById(Integer id, FlightRunwayCreateDto dto) {
+        FlightRunway runway = runwayRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Runway with ID " + id + " not found"));
+        runwayMapper.updateRunwayFromDto(dto, runway);
+        runwayRepository.save(runway);
+        return runwayMapper.toDto(runway);**********
+    }
+
+    مشکل اشتباه فرستادن اینام در REQUEST PARAME
+        اضافه کردن DELETE REQUESTS

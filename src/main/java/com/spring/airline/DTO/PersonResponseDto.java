@@ -21,7 +21,7 @@ public class PersonResponseDto {
 
     private String email;
 
-    private Country Nationality;
+    private Country country;
 
     public String getNationalCode() {
         return nationalCode;
@@ -79,11 +79,11 @@ public class PersonResponseDto {
         this.email = email;
     }
 
-    public Country getNationality() {
-        return Nationality;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setNationality(Country nationality) {
-        Nationality = nationality;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

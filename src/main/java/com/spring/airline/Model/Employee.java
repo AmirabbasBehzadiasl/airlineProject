@@ -7,7 +7,6 @@ import validation.ValidPhoneNumber;
 import java.time.LocalDate;
 
 @Entity
-@ValidPhoneNumber
 public class Employee extends Person {
 
     @Column(nullable = false, length = 32)

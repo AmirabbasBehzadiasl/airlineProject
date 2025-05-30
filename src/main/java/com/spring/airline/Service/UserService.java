@@ -8,10 +8,12 @@ import com.spring.airline.Mapper.UserMapper;
 import com.spring.airline.Model.User;
 import com.spring.airline.Repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -33,8 +35,8 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("User with username: " + username + " not found"));
         return userMapper.toDto(user);
     }
-
-    public void addUser(UserCreateDto userDto) {
+        @Transactional
+        public void addUser(UserCreateDto userDto) {
         userRepository.findByUsername(userDto.getUsername())
                 .ifPresent(existing -> {
                     throw new AlreadyExistException("User with username: " + userDto.getUsername() + " already exists");
@@ -47,6 +49,7 @@ public class UserService {
                 .ifPresentOrElse(
                         existingUser -> {
                             userMapper.updateUserFromDto(userDto, existingUser);
+                            userRepository.save(existingUser);
                         },
                         () -> {
                             throw new NotFoundException("User with username: " + username + " not found");

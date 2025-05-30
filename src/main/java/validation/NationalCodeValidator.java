@@ -18,7 +18,7 @@ public class NationalCodeValidator implements ConstraintValidator<ValidNationalC
             Class<?> clazz = value.getClass();
 
             Field codeField = clazz.getDeclaredField("nationalCode");
-            Field countryField = clazz.getDeclaredField("Nationality");
+            Field countryField = clazz.getDeclaredField("country");
 
             codeField.setAccessible(true);
             countryField.setAccessible(true);

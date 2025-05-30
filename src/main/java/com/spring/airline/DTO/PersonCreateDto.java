@@ -5,9 +5,13 @@ import com.spring.airline.Enums.Gender;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
+import validation.ValidNationalCode;
+import validation.ValidPhoneNumber;
 
 import java.time.LocalDate;
 
+@ValidPhoneNumber
+@ValidNationalCode
 public class PersonCreateDto {
 
     @NotBlank(message = "you should enter nationalCode")
@@ -39,9 +43,9 @@ public class PersonCreateDto {
     @Size(min = 15 , max = 40 , message = "email must be between 15 and 40 alphanumeric characters")
     private String email;
 
-    @NotNull(message = "you should enter Nationality")
+    @NotNull(message = "you should enter country")
     @Enumerated(EnumType.STRING)
-    private Country Nationality;
+    private Country country;
 
     public String getNationalCode() {
         return nationalCode;
@@ -99,12 +103,12 @@ public class PersonCreateDto {
         this.email = email;
     }
 
-    public Country getNationality() {
-        return Nationality;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setNationality(Country nationality) {
-        Nationality = nationality;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
 }

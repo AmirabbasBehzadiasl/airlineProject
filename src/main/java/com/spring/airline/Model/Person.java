@@ -3,15 +3,12 @@ package com.spring.airline.Model;
 import com.spring.airline.Enums.Country;
 import com.spring.airline.Enums.Gender;
 import jakarta.persistence.*;
-import validation.ValidNationalCode;
-import validation.ValidPhoneNumber;
+
 
 import java.time.LocalDate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@ValidPhoneNumber
-@ValidNationalCode
 public class Person {
 
     @Id
@@ -42,7 +39,7 @@ public class Person {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Country Nationality;
+    private Country country;
 
     public Integer getId() {
         return id;
@@ -108,11 +105,11 @@ public class Person {
         this.email = email;
     }
 
-    public Country getNationality() {
-        return Nationality;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setNationality(Country nationality) {
-        Nationality = nationality;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

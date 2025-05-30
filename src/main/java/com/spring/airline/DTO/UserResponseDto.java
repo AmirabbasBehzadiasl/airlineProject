@@ -1,14 +1,12 @@
 package com.spring.airline.DTO;
 
-import com.spring.airline.Model.Ticket;
-
 import java.util.List;
 
 public class UserResponseDto {
 
-    private String username;
-
     private PersonResponseDto person;
+
+    private String username;
 
     private List<TicketResponseDto> purchasedTickets;
 

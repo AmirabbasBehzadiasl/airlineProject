@@ -6,6 +6,7 @@
 
     @Entity
     public class FlightRunway {
+
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;

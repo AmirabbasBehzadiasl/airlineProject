@@ -7,6 +7,7 @@ import com.spring.airline.Exceptions.NotFoundException;
 import com.spring.airline.Mapper.EmployeeMapper;
 import com.spring.airline.Model.Airline;
 import com.spring.airline.Model.Employee;
+import com.spring.airline.Model.WorkShiftTime;
 import com.spring.airline.Repository.AirlineRepository;
 import com.spring.airline.Repository.EmployeeRepository;
 import jakarta.validation.Valid;
@@ -40,16 +41,16 @@ public class EmployeeService {
         return employeeMapper.toDto(employee);
     }
 
-    public void addEmployee(EmployeeCreateDto employee) {
+    public EmployeeResponseDto addEmployee(EmployeeCreateDto employee) {
         Employee employeeModel =  employeeMapper.toModel(employee);
-        employeeRepository.findEmployeeByNationalCode(employee.getPerson().getNationalCode())
+        employeeRepository.findEmployeeByNationalCode(employeeModel.getNationalCode())
                 .ifPresent(
                         existingEmployee -> {throw new AlreadyExistException("employee with National Code : " + existingEmployee.getNationalCode()+ " already exist");
                         });
         Airline airline = airlineRepository.findAirlineByName(employee.getAirlineName())
                 .orElseThrow(() -> new NotFoundException("airline with name : " + employee.getAirlineName() + " not found"));
         employeeModel.setAirline(airline);
-        employeeRepository.save(employeeModel);
+        return employeeMapper.toDto(employeeRepository.save(employeeModel));
     }
 
     public void updateEmployeeByNationalCode(String nationalCode, @Valid EmployeeCreateDto employee) {

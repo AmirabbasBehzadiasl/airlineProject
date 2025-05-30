@@ -5,14 +5,25 @@ import jakarta.validation.constraints.NotNull;
 
 public class FlightRunwayResponseDto {
 
-    @NotNull(message = "status is required")
+    private Integer id;
+
     private RunwayStatus status;
 
-    public @NotNull(message = "status is required") RunwayStatus getStatus() {
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public RunwayStatus getStatus() {
         return status;
     }
 
-    public void setStatus(@NotNull(message = "status is required") RunwayStatus status) {
+    public void setStatus(RunwayStatus status) {
         this.status = status;
     }
+
 }

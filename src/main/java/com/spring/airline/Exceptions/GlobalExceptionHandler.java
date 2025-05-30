@@ -25,6 +25,17 @@ public class GlobalExceptionHandler {
         }
         return ResponseEntity.badRequest().body(errors);
     }
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<?> handleEnumError(MethodArgumentTypeMismatchException ex) {
+        if (ex.getRequiredType() != null && ex.getRequiredType().isEnum()) {
+            String message = "Invalid value for parameter '" + ex.getName() +
+                    "'. Allowed values: " + String.join(", ",
+                    Arrays.stream(ex.getRequiredType().getEnumConstants()).map(Object::toString).toList());
+
+            return ResponseEntity.badRequest().body(message);
+        }
+        return ResponseEntity.badRequest().body("Invalid parameter value");
+    }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<?> handleJsonParseErrors(HttpMessageNotReadableException ex) {

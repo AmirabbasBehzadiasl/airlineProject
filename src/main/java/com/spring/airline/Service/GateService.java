@@ -2,6 +2,7 @@ package com.spring.airline.Service;
 
 import com.spring.airline.DTO.GateCreateDto;
 import com.spring.airline.DTO.GateResponseDto;
+import com.spring.airline.Enums.GateStatus;
 import com.spring.airline.Exceptions.NotFoundException;
 import com.spring.airline.Mapper.GateMapper;
 import com.spring.airline.Model.Gate;
@@ -34,21 +35,27 @@ public class GateService {
         return gateMapper.toDto(gate);
     }
 
-    public void addGate(GateCreateDto dto) {
-        Gate gate = gateMapper.toModel(dto);
-        gateRepository.save(gate);
+    public Gate addGate(GateCreateDto dto) {
+        return gateRepository.save(gateMapper.toModel(dto));
     }
 
-    public void updateGate(Integer id, GateCreateDto dto) {
+    public Gate updateGate(Integer id, GateCreateDto dto) {
         Gate gate = gateRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Gate with id " + id + " not found"));
         gateMapper.updateGateFromDto(dto, gate);
-        gateRepository.save(gate);
+        return gateRepository.save(gate);
     }
 
     public void deleteGate(Integer id) {
         Gate gate = gateRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Gate with id " + id + " not found"));
         gateRepository.delete(gate);
+    }
+
+    public List<GateResponseDto> getGateByStatus(GateStatus status) {
+        return gateRepository.findGatesByStatus(status)
+                .stream()
+                .map(gateMapper::toDto)
+                .toList();
     }
 }

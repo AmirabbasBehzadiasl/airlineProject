@@ -5,6 +5,7 @@ import com.spring.airline.Model.WorkShiftTime;
 import java.time.LocalDate;
 
 public class EmployeeResponseDto {
+
     private PersonResponseDto person;
 
     private String jobPosition;

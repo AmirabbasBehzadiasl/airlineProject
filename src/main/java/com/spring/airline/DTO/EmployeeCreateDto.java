@@ -2,15 +2,21 @@ package com.spring.airline.DTO;
 
 import com.spring.airline.Model.WorkShiftTime;
 import jakarta.persistence.Embedded;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import validation.ValidNationalCode;
+import validation.ValidPhoneNumber;
 
 import java.time.LocalDate;
 
+
 public class EmployeeCreateDto {
 
+    @Valid
+    @NotNull(message = "you should enter personal details ")
     private PersonCreateDto person;
 
     @NotBlank(message = "you should enter jobPosition")

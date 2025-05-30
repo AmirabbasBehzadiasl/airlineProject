@@ -1,7 +1,10 @@
 package com.spring.airline.Enums;
 
 public enum GateStatus {
-    OPEN,
-    WAITING,
-    UNDER_Maintenance
+    AVAILABLE,
+    OCCUPIED,
+    UNDER_MAINTENANCE,
+    CLOSED,
+    SECURITY_CHECK,
+    BOARDING,
 }
