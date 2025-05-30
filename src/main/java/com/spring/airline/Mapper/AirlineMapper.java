@@ -18,7 +18,7 @@ public interface AirlineMapper {
     Airline toModel(AirlineCreateDto airlineCreateDto);
 
     @Mapping(source = "aircraft" , target = "aircraftName" , qualifiedByName = "aircraftMap")
-    @Mapping(source = "employees" , target = "employeesNationalCode" , qualifiedByName = "employeeMap")
+    @Mapping(source = "employees" , target = "employeesName" , qualifiedByName = "employeeMap")
     AirlineResponseDto toDto(Airline airline);
 
     @Mapping(target = "aircraft", ignore = true)
@@ -28,13 +28,13 @@ public interface AirlineMapper {
 
     @Named("employeeMap")
     default List<String> employeeMap(List<Employee> employees) {
-        List<String> employeesNationalCode = new ArrayList<>();
+        List<String> employeesName = new ArrayList<>();
         if (employees != null) {
             for (Employee employee : employees) {
-                employeesNationalCode.add(employee.getNationalCode());
+                employeesName.add(employee.getFirstName()+employee.getLastName());
             }
         }
-        return employeesNationalCode;
+        return employeesName;
     }
     @Named("aircraftMap")
     default List<String> aircraftMap(List<Aircraft> aircrafts) {

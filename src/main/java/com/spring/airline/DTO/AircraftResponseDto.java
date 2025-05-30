@@ -12,8 +12,6 @@ public class AircraftResponseDto {
     private LocalDate dateOfManufacture;
     private Integer passengerCapacity;
     private OperationalStatus operationalStatus;
-
-    @JsonProperty("airline_name")
     private String airlineName;
 
     public String getModel() {

@@ -7,12 +7,10 @@ import java.time.LocalDate;
 
 public class AircraftCreateDto {
 
-    @NotNull(message = "model is required")
-    @NotBlank(message = "Model can't be empty ")
+    @NotBlank(message = "model is required")
     @Size(min = 5 , max = 50 , message = "model should be between 5 and 50 character")
     private String model;
 
-    @NotNull(message = "Registration number is required" )
     @NotBlank(message = "Registration can't be empty")
     @Size(min = 5 , max = 50 , message = "registrationNumber should be between 5 and 50 character")
     private String registrationNumber;
@@ -28,9 +26,8 @@ public class AircraftCreateDto {
     @NotNull(message = "Operational status is required")
     private OperationalStatus operationalStatus;
 
-    @NotNull(message = "airline is required")
-    @Min(value = 1,message = "airline id must be at least 1")
-    private Integer airlineId;
+    @NotBlank(message = "airline is required")
+    private String airlineName;
 
     public String getModel() {
         return model;
@@ -72,12 +69,12 @@ public class AircraftCreateDto {
         this.operationalStatus = operationalStatus;
     }
 
-    public Integer getAirline() {
-        return airlineId;
+    public String getAirlineName() {
+        return airlineName;
     }
 
-    public void setAirline(Integer airlineId) {
-        this.airlineId = airlineId;
+    public void setAirline(String airlineName) {
+        this.airlineName = airlineName;
     }
 
 }
