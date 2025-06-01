@@ -5,6 +5,8 @@ public class PassengerResponseDto {
 
     private String passportNumber;
 
+    private TicketResponseDto ticket;
+
     private PersonResponseDto person;
 
     public String getPassportNumber() {
@@ -23,5 +25,11 @@ public class PassengerResponseDto {
         this.person = person;
     }
 
+    public TicketResponseDto getTicket() {
+        return ticket;
+    }
 
+    public void setTicket(TicketResponseDto ticket) {
+        this.ticket = ticket;
+    }
 }

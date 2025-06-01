@@ -2,6 +2,7 @@ package com.spring.airline.Controller;
 
 import com.spring.airline.DTO.GateCreateDto;
 import com.spring.airline.DTO.GateResponseDto;
+import com.spring.airline.Enums.FlightStatus;
 import com.spring.airline.Enums.GateStatus;
 import com.spring.airline.Service.GateService;
 import jakarta.validation.Valid;

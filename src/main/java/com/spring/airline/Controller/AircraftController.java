@@ -2,11 +2,11 @@ package com.spring.airline.Controller;
 
 import com.spring.airline.DTO.AircraftCreateDto;
 import com.spring.airline.DTO.AircraftResponseDto;
-import com.spring.airline.DTO.EmployeeResponseDto;
+import com.spring.airline.DTO.FlightResponseDto;
+import com.spring.airline.Enums.FlightStatus;
 import com.spring.airline.Service.AircraftService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +44,7 @@ public class AircraftController {
     public ResponseEntity<AircraftResponseDto> updateAircraftByRegistrationNumber(@RequestParam String registrationNumber, @Valid @RequestBody AircraftCreateDto dto) {
         return ResponseEntity.ok(aircraftService.updateAircraftByRegistrationNumber(registrationNumber, dto));
     }
+
 
     @DeleteMapping("/deleteAirCraftByRegistrationNumber")
     public ResponseEntity<Void> deleteAirCraftByRegistrationNumber(@RequestParam String registrationNumber) {

@@ -35,6 +35,9 @@ public class Aircraft {
     @JoinColumn(name = "airline_id" , nullable = false)
     private Airline airline;
 
+    @OneToMany(mappedBy = "aircraft")
+    private List<Flight> flights;
+
     public Integer getId() {
         return id;
     }
@@ -89,5 +92,13 @@ public class Aircraft {
 
     public void setAirline(Airline airline) {
         this.airline = airline;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 }

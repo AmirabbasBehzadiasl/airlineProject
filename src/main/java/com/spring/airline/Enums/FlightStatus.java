@@ -1,9 +1,9 @@
 package com.spring.airline.Enums;
 
 public enum FlightStatus {
-    OnTime,
-    Delayed,
-    Canceled,
-    Flighted,
+    ON_TIME,
+    DELAYED,
+    CANCELLED,
+    FLIGHTED,
     FIGHTING
 }

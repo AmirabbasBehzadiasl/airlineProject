@@ -3,6 +3,8 @@
     import com.spring.airline.Enums.RunwayStatus;
     import jakarta.persistence.*;
 
+    import java.util.List;
+
 
     @Entity
     public class FlightRunway {
@@ -14,6 +16,9 @@
         @Column(nullable = false )
         @Enumerated(EnumType.STRING)
         private RunwayStatus status;
+
+        @OneToMany(mappedBy = "runway")
+        private List<Flight> flights;
 
         public Integer getId() {
             return id;

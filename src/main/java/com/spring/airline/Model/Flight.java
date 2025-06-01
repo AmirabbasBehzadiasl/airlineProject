@@ -3,6 +3,7 @@ package com.spring.airline.Model;
 import com.spring.airline.Enums.FlightStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,52 +15,52 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
     @Column(unique=true , nullable=false)
-    @NotNull(message = "you should enter flightNumber")
-    @NotBlank(message = "flightNumber can't be empty")
-    @Min(value = 1 , message = "flightNumber must be at least 1")
-    @Max(value = 200 , message = "flightNumber must be at most 200")
     private Integer flightNumber;
 
     @Column(nullable = false, length = 50)
-    @NotNull(message =  "you should enter origin")
-    @NotBlank(message = "origin can't be empty")
-    @Size(min = 3 , max = 50 , message = "origin must be between 3 and 50 character")
-    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "origin must only contain letters and spaces")
     private String origin;
 
     @Column(nullable = false, length = 50)
-    @NotNull(message =  "you should enter destination")
-    @NotBlank(message = "destination can't be empty")
-    @Size(min = 3 , max = 50 , message = "destination must be between 3 and 50 character")
-    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "destination must only contain letters and spaces")
     private String destination;
 
     @Column(nullable = false, length = 10)
-    @NotNull(message = "you should enter flightStatus")
-    @NotBlank(message = "flightStatus can't be empty")
     @Enumerated(EnumType.STRING)
     private FlightStatus flightStatus;
 
     @Column(nullable = false)
     @NotNull(message = "you should enter availableSeats")
-    @NotBlank(message = "availableSeats can't be empty")
     private Integer availableSeats;
 
     @Column(nullable = false)
-    @NotNull(message = "you should enter timeOfFlight")
-    @Future
     private LocalDateTime timeOfFlight;
 
     @Column(nullable = false)
-    @NotNull(message = "you should enter arrivalTime")
-    @Future
     private LocalDateTime arrivalTime;
 
-    // it's optional (don't add any field to table)
+    @ManyToOne
+    @JoinColumn(name = "aircraft_id")
+    private Aircraft aircraft;
+
+    @ManyToOne
+    @JoinColumn(name = "airline_id")
+    private Airline airline;
+
+    @ManyToOne
+    @JoinColumn(name = "gate_id")
+    private Gate gate;
+
+    @ManyToOne
+    @JoinColumn(name = "runway_id")
+    private FlightRunway runway;
+
+
     @OneToMany(mappedBy = "flight")
     private List<Ticket> tickets;
-
 
     public Integer getId() {
         return id;
@@ -131,5 +132,40 @@ public class Flight {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(Aircraft aircraft) {
+        this.aircraft = aircraft;
+    }
+
+    public Airline getAirline() {
+        return airline;
+    }
+
+    public void setAirline(Airline airline) {
+        this.airline = airline;
+    }
+
+    public Gate getGate() {
+        return gate;
+    }
+
+    public void setGate(Gate gate) {
+        this.gate = gate;
+    }
+
+    public FlightRunway getRunway() {
+        return runway;
+    }
+
+    public void setRunway(FlightRunway runway) {
+        this.runway = runway;
+    }
+
+    public void setCreatedAt(LocalDateTime now) {
     }
 }

@@ -2,9 +2,12 @@ package com.spring.airline.Service;
 
 import com.spring.airline.DTO.AirlineCreateDto;
 import com.spring.airline.DTO.AirlineResponseDto;
+import com.spring.airline.DTO.FlightResponseDto;
+import com.spring.airline.Enums.FlightStatus;
 import com.spring.airline.Exceptions.AlreadyExistException;
 import com.spring.airline.Exceptions.NotFoundException;
 import com.spring.airline.Mapper.AirlineMapper;
+import com.spring.airline.Mapper.FlightMapper;
 import com.spring.airline.Model.Airline;
 import com.spring.airline.Repository.AircraftRepository;
 import com.spring.airline.Repository.AirlineRepository;
@@ -16,17 +19,15 @@ import java.util.List;
 @Service
 public class AirlineService {
 
-    AirlineRepository airlineRepository;
-    EmployeeRepository employeeRepository;
-    AirlineMapper airlineMapper;
-    AircraftRepository aircraftRepository;
+    private final AirlineRepository airlineRepository;
+    private final AirlineMapper airlineMapper;
+    private final FlightMapper flightMapper;
 
     public AirlineService(AirlineRepository airlineRepository, AirlineMapper airlineMapper
-    , EmployeeRepository employeeRepository , AircraftRepository aircraftRepository) {
+    , FlightMapper flightMapper) {
         this.airlineRepository = airlineRepository;
         this.airlineMapper = airlineMapper;
-        this.employeeRepository = employeeRepository;
-        this.aircraftRepository = aircraftRepository;
+        this.flightMapper = flightMapper;
     }
 
     public List<AirlineResponseDto> getAllAirlines() {

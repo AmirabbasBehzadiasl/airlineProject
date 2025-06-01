@@ -1,9 +1,7 @@
 package com.spring.airline.Controller;
 
-import com.spring.airline.DTO.AirlineCreateDto;
-import com.spring.airline.DTO.AirlineResponseDto;
-import com.spring.airline.DTO.EmployeeCreateDto;
-import com.spring.airline.DTO.EmployeeResponseDto;
+import com.spring.airline.DTO.*;
+import com.spring.airline.Enums.FlightStatus;
 import com.spring.airline.Service.AirlineService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -51,5 +49,6 @@ public class AirlineController {
         airlineService.deleteAirlineByName(name);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("airline with name " +name + " delete successfully");
     }
+
 
 }

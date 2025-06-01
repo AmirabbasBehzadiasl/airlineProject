@@ -35,6 +35,9 @@ public class Airline {
     @OneToMany(mappedBy = "airline")
     private List<Employee> employees;
 
+    @OneToMany(mappedBy = "airline")
+    private List<Flight> flights;
+
     public Integer getId() {
         return id;
     }
@@ -89,5 +92,13 @@ public class Airline {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 }

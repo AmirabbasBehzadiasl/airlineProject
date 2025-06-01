@@ -2,17 +2,23 @@ package com.spring.airline.Service;
 
 import com.spring.airline.DTO.AircraftCreateDto;
 import com.spring.airline.DTO.AircraftResponseDto;
+import com.spring.airline.DTO.FlightResponseDto;
 import com.spring.airline.Exceptions.AlreadyExistException;
 import com.spring.airline.Exceptions.NotFoundException;
 import com.spring.airline.Mapper.AircraftMapper;
+import com.spring.airline.Mapper.FlightMapper;
 import com.spring.airline.Model.Aircraft;
 import com.spring.airline.Model.Airline;
+import com.spring.airline.Model.Flight;
 import com.spring.airline.Repository.AircraftRepository;
 import com.spring.airline.Repository.AirlineRepository;
+import com.spring.airline.Repository.FlightRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -21,11 +27,14 @@ public class AircraftService {
     private final AircraftRepository aircraftRepository;
     private final AirlineRepository airlineRepository;
     private final AircraftMapper aircraftMapper;
+    private final FlightMapper flightMapper;
 
-    public AircraftService(AircraftRepository aircraftRepository, AirlineRepository airlineRepository, AircraftMapper aircraftMapper) {
+    public AircraftService(AircraftRepository aircraftRepository, AirlineRepository airlineRepository, AircraftMapper aircraftMapper
+    , FlightMapper flightMapper) {
         this.aircraftRepository = aircraftRepository;
         this.airlineRepository = airlineRepository;
         this.aircraftMapper = aircraftMapper;
+        this.flightMapper = flightMapper;
     }
 
     public List<AircraftResponseDto> getAllAircraft() {

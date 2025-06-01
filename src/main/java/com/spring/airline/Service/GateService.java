@@ -1,9 +1,12 @@
 package com.spring.airline.Service;
 
+import com.spring.airline.DTO.FlightResponseDto;
 import com.spring.airline.DTO.GateCreateDto;
 import com.spring.airline.DTO.GateResponseDto;
+import com.spring.airline.Enums.FlightStatus;
 import com.spring.airline.Enums.GateStatus;
 import com.spring.airline.Exceptions.NotFoundException;
+import com.spring.airline.Mapper.FlightMapper;
 import com.spring.airline.Mapper.GateMapper;
 import com.spring.airline.Model.Gate;
 import com.spring.airline.Repository.GateRepository;
@@ -16,10 +19,13 @@ public class GateService {
 
     private final GateRepository gateRepository;
     private final GateMapper gateMapper;
+    private final FlightMapper flightMapper;
 
-    public GateService(GateRepository gateRepository, GateMapper gateMapper) {
+    public GateService(GateRepository gateRepository, GateMapper gateMapper,
+                       FlightMapper flightMapper) {
         this.gateRepository = gateRepository;
         this.gateMapper = gateMapper;
+        this.flightMapper = flightMapper;
     }
 
     public List<GateResponseDto> getAllGates() {
